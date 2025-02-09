@@ -34,9 +34,9 @@ jobs:
           # Fetch the latest changes from the remote repository
           git fetch origin
           
-          # Merge the remote changes into the local branch
-          git merge origin/main --no-edit || true  # Ignore merge conflicts for now
-          
+          # Reset the local main branch to match the remote main
+          git reset --hard origin/main
+
           # Add changes and commit
           git add activity.md
           git commit -m "Update daily activity" || echo "No changes to commit"
