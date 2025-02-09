@@ -30,7 +30,16 @@ jobs:
         run: |
           git config --local user.email "kaurpahujasirjan@gmail.com"
           git config --local user.name "Sirjan Kaur Pahuja"
-          git pull origin main --rebase  # Pull the latest changes before pushing
+          
+          # Fetch the latest changes from the remote repository
+          git fetch origin
+
+          # Rebase local changes on top of the latest from the remote
+          git rebase origin/main
+
+          # Add changes and commit
           git add activity.md
           git commit -m "Update daily activity"
-          git push https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/sirjan255/github-profile-automation.git
+          
+          # Push changes (force push if necessary to avoid conflicts)
+          git push https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/sirjan255/github-profile-automation.git main --force
