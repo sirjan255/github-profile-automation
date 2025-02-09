@@ -3,6 +3,7 @@ name: Update GitHub Profile
 on:
   schedule:
     - cron: '0 0 * * *'  # Runs every day at midnight
+  workflow_dispatch:  # Allow for manual trigger as well
 
 jobs:
   update-readme:
@@ -22,8 +23,9 @@ jobs:
 
       - name: Run Update Script
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }} 
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: python scripts/update_profile.py
+
       - name: Commit and Push Changes
         run: |
           git config --local user.email "kaurpahujasirjan@gmail.com"
@@ -31,4 +33,3 @@ jobs:
           git add activity.md
           git commit -m "Update daily activity"
           git push https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/sirjan255/github-profile-automation.git
-
