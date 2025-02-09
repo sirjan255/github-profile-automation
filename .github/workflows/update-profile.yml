@@ -3,7 +3,7 @@ name: Update GitHub Profile
 on:
   schedule:
     - cron: '0 0 * * *'  # Runs every day at midnight
-  workflow_dispatch:  # Allow for manual trigger as well
+  workflow_dispatch:  # Allows for manual trigger
 
 jobs:
   update-readme:
@@ -30,6 +30,7 @@ jobs:
         run: |
           git config --local user.email "kaurpahujasirjan@gmail.com"
           git config --local user.name "Sirjan Kaur Pahuja"
+          git pull origin main --rebase  # Pull the latest changes before pushing
           git add activity.md
           git commit -m "Update daily activity"
           git push https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/sirjan255/github-profile-automation.git
