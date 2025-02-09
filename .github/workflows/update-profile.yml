@@ -30,16 +30,19 @@ jobs:
         run: |
           git config --local user.email "kaurpahujasirjan@gmail.com"
           git config --local user.name "Sirjan Kaur Pahuja"
-          
+
           # Fetch the latest changes from the remote repository
           git fetch origin
-          
+
           # Reset the local main branch to match the remote main
           git reset --hard origin/main
 
           # Add changes and commit
           git add activity.md
           git commit -m "Update daily activity" || echo "No changes to commit"
-          
-          # Push changes (force push if necessary to avoid conflicts)
-          git push https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/sirjan255/github-profile-automation.git main --force
+
+          # Pull the latest changes from the remote repository
+          git pull origin main
+
+          # Push changes
+          git push https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/sirjan255/github-profile-automation.git main
