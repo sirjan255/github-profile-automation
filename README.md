@@ -1,2 +1,134 @@
-# github-profile-automation
-A project to automate daily activity tracking on my GitHub profile.
+# GitHub Profile Automation
+
+This project automates the daily updates of your GitHub profile. It uses a GitHub Action to fetch your daily activity (commits) and updates the profile’s `activity.md` file with the latest commit information. The goal of this repository is to keep your GitHub profile up to date with your activity automatically.
+
+## Features
+- Fetches the last 24 hours' commits from your GitHub account using the GitHub API.
+- Updates the `activity.md` file with your daily commit messages.
+- Automates the update process using GitHub Actions, running every day at midnight or on-demand.
+- Utilizes a Python script to retrieve and write the commit messages to the `activity.md` file.
+- A `.gitignore` file tailored for Python projects that ensures unnecessary files do not get pushed to the repository.
+
+## Table of Contents
+1. [Getting Started](#getting-started)
+2. [GitHub Actions Workflow](#github-actions-workflow)
+3. [Python Script](#python-script)
+4. [GitHub Token](#github-token)
+5. [Using the `.gitignore`](#using-the-gitignore)
+6. [Contributing](#contributing)
+
+
+## Getting Started
+
+### Prerequisites
+Before you begin, ensure you have the following installed:
+- [Python 3.x](https://www.python.org/downloads/)
+- [Git](https://git-scm.com/downloads)
+- A GitHub account and an active repository.
+
+### Setup
+1. Clone the repository to your local machine:
+   ```bash
+   git clone https://github.com/sirjan255/github-profile-automation.git
+   cd github-profile-automation
+   ```
+
+2. Set up your Python environment. You can use `venv` or any environment manager:
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
+
+3. Install the required dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. Create a `.env` file to store your GitHub Personal Access Token (`GH_TOKEN`). You can generate a token by visiting [GitHub Personal Access Tokens](https://github.com/settings/tokens).
+
+---
+
+## GitHub Actions Workflow
+
+This repository includes a GitHub Actions workflow that automatically updates your `activity.md` file every day at midnight. The workflow can also be manually triggered from the GitHub interface.
+
+### Workflow Overview
+- **Name**: Update GitHub Profile
+- **Triggers**:
+  - Automatically runs every day at midnight via cron.
+  - Can be triggered manually via the GitHub UI (`workflow_dispatch`).
+  
+### Workflow Steps:
+1. **Checkout Repository**: Checks out the code from the repository.
+2. **Set up Python**: Installs Python in the GitHub Actions environment.
+3. **Install Dependencies**: Installs the required Python dependencies (`requests` library).
+4. **Run Update Script**: Executes the Python script that fetches the last 24 hours' commits and writes them to `activity.md`.
+5. **Commit and Push Changes**: Commits the updated `activity.md` file and pushes it to the repository.
+
+## Python Script
+
+The Python script `scripts/update_profile.py` fetches the latest commits from the GitHub API and updates the `activity.md` file with the commit messages.
+
+### Key Functions:
+
+- **`get_commits()`**: 
+  - Fetches the user's events (commits) from the GitHub API.
+  - Filters out only `PushEvent` types (commits) from the events in the last 24 hours.
+
+- **`update_activity()`**:
+  - Calls `get_commits()` and writes the commit messages to the `activity.md` file.
+
+### Usage:
+To run the script manually, you can execute:
+```bash
+python scripts/update_profile.py
+```
+
+### Example Output (`activity.md`):
+```markdown
+# Daily GitHub Activity
+
+## Commits
+- Fixed bug in authentication module
+- Updated documentation for user guide
+- Added feature for push notifications
+```
+
+---
+
+## GitHub Token
+
+This project requires a GitHub Personal Access Token (`GH_TOKEN`) to fetch the commit data via GitHub's API.
+
+### Setting up the GitHub Token:
+1. Go to [GitHub Token Settings](https://github.com/settings/tokens) to create a new token.
+2. Store the token in your repository's **Secrets** (under **Settings > Secrets**):
+   - **Name**: `GH_TOKEN`
+   - **Value**: Paste your personal access token here.
+
+The token is required for authentication when making API requests to GitHub.
+
+---
+
+## Using the `.gitignore`
+
+This repository includes a `.gitignore` file specifically tailored for Python projects. The `.gitignore` file ensures that unnecessary or sensitive files (e.g., compiled code, environment directories, logs, etc.) are not tracked in version control.
+
+### Key Sections of `.gitignore`:
+- **Compiled Python files**: Ignores bytecode files like `*.pyc` and directories like `__pycache__/`.
+- **Environment files**: Ignores virtual environment directories such as `.env`, `.venv`, `env/`, and `venv/`.
+- **Build/Distribution Files**: Ignores build-related directories and files (e.g., `dist/`, `build/`, `.egg-info/`).
+- **Test-related Files**: Ignores test reports and coverage files generated by tools like `pytest`, `tox`, and `nose`.
+- **IDE-specific Files**: Ignores project settings for IDEs like PyCharm (`.idea/`) and Spyder (`.spyderproject`).
+
+This `.gitignore` ensures that your repository only contains the essential source code and not unnecessary temporary or configuration files.
+
+
+## Contributing
+
+I welcome contributions to this project! To contribute:
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature-branch`).
+3. Make your changes.
+4. Commit and push your changes (`git push origin feature-branch`).
+5. Create a pull request with a description of the changes you've made.
