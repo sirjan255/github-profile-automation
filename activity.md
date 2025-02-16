@@ -1,5 +1,5 @@
 # Daily GitHub Activity
 
 ## Commits
-- Update update-profile.yml
-- Update update_profile.py
+- Delete .next and node_modules directories
+- Delete .next and node_modules directories
