@@ -1,4 +1,5 @@
 # Daily GitHub Activity
 
 ## Commits
-- Add TypeScript declaration file cmdk.d.ts
+- Updated README for better documentation/
+- Updated README
