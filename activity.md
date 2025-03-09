@@ -1,5 +1,5 @@
 # Daily GitHub Activity
 
 ## Commits
-- Updated README for better documentation/
-- Updated README
+- Fixed something.
+- Done with contribution guidelines ( except the template ).
