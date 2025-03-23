@@ -1,5 +1,7 @@
 # Daily GitHub Activity
 
 ## Commits
-- Fixed something.
-- Done with contribution guidelines ( except the template ).
+- Updated & refactored bill creation.
+- Updated finance components.
+- Updated data handling
+- Made UI better, used action indicative colors.
