@@ -1,7 +1,6 @@
 # Daily GitHub Activity
 
 ## Commits
-- Updated & refactored bill creation.
-- Updated finance components.
-- Updated data handling
-- Made UI better, used action indicative colors.
+- Updated to match other updates.
+- Aligning variables & comments.
+- Updated toast to include success variant & updated mass approval to display approved bills using success variant.
