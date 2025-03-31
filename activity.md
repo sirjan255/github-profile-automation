@@ -1,7 +1,10 @@
 # Daily GitHub Activity
 
 ## Commits
-- UI modification for vendors table.
-- Added download as csv functionality separately for credit & debit transactions.
-- Added APIs for getting credit & debit transactions as CSV.
-- Added filters for stack, sponsor, & now it displays all credit and debit transactions for same parameter input.
+- Console logged list of sponsorships.
+- Improved the UI of all advances table.
+- Merge branch 'dev' of https://github.com/iitm-paradox/central-app-frontend into dev
+- Added a table where you can view all debit and credit transactions of advance.
+- Added deassign advance functionality.
+- Added assign advance functionality.
+- Merge branch 'dev' of https://github.com/iitm-paradox/central-app-frontend into dev
